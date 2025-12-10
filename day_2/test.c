@@ -60,12 +60,6 @@ void test_performance() {
     long len = get_line_length(file);
     if (len == 0) return;
     
-    // Just estimate max possible IDs for simplicity or re-read
-    // For this test, let's just parse the whole file and store numbers
-    // A simple dynamic array would work, but to keep it simple without extra deps:
-    // We will just read the file twice, once for each function. 
-    // Wait, reading file during timing is bad. 
-    // Let's store them.
     
     // Count items first
     int capacity = 10000;
@@ -79,13 +73,7 @@ void test_performance() {
         while (token != NULL) {
             long long start, end;
             if (sscanf(token, "%lld-%lld", &start, &end) == 2) {
-                // We'll test every number in the ranges to get a meaningful load
-                // But that might be too many. Let's just pick a few from each range
-                // or just the bounds to be fast enough? 
-                // The user asked to use input.txt.
-                // Let's just store the start and end of ranges and iterate during test.
                 
-                // Let's just store ranges to save memory and iterate later
                 if (count + 2 >= capacity) {
                     capacity *= 2;
                     ids = realloc(ids, sizeof(long long) * capacity);
