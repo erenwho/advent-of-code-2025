@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 typedef struct {
     int dial_pos;
     int max_pos;
